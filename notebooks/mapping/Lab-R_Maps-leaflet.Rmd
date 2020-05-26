@@ -1,0 +1,88 @@
+---
+title: "R Notebook for Leaflet maps"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+# load packages
+library(dplyr)
+library(ggplot2)
+library(rjson)
+library(jsonlite)
+library(leaflet)
+library(RCurl)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+map_r_birthplace <- leaflet() %>%
+  addTiles() %>%  # use the default base map which is OpenStreetMap tiles
+  addMarkers(lng=174.768, lat=-36.852,
+             popup="The birthplace of R")
+map_r_birthplace
+```
+Let’s create your own interactive map of surface water data. To do this, you will follow the steps below:
+
+1. Request and get the data from the colorado.gov SODA API in R using fromJSON().
+1. Address column data types to ensure your quantitative data (number values) data are in fact numeric.
+1. Remove NA (missing data) values.
+
+Check out [EarthDataScience](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/leaflet-r/) for more extensive leaflet mapping
+```{r}
+base_url <- "https://data.colorado.gov/resource/j5pc-4t32.json?"
+full_url <- paste0(base_url, "station_status=Active",
+            "&county=BOULDER")
+water_data <- getURL(URLencode(full_url))
+
+# you can then pipe this
+water_data_df <- fromJSON(water_data) %>%
+  flatten(recursive = TRUE) # remove the nested data frame
+
+# turn columns to numeric and remove NA values
+water_data_df <- water_data_df %>%
+  mutate_at(vars(amount, location.latitude, location.longitude), funs(as.numeric)) %>%
+  filter(!is.na(location.latitude))
+```
+```{r}
+water_data_df
+```
+```{r}
+# create leaflet map
+water_locations_map <- leaflet(water_data_df) %>%
+  addTiles() %>%
+  addCircleMarkers(lng = ~location.longitude,
+                   lat = ~location.latitude)
+```
+This piped command is equivalent the following sequence:
+
+    water_locations_map <- leaflet(water_data_df)
+    water_locations_map <- addTiles(water_locations_map)
+    water_locations_map <- addCircleMarkers(water_locations_map, lng = ~location.longitude,
+                            lat = ~location.latitude)
+```{r}
+water_locations_map
+```
+And now some customisation - popups on the markers with the station name, and a link to the historical data for that station.
+```{r}
+water_locations_map <- addCircleMarkers(water_locations_map, lng = ~location.longitude,
+                            lat = ~location.latitude,
+                            popup = ~paste0(station_name,
+                                           "<br/>",
+                                           "Discharge: ", amount,
+                                            "<br/>",
+                                           "<a href='", http_linkage.url ,"' target=_blank>", dwr_abbrev ,"</a>"
+                                           )
+                           )
+
+water_locations_map
+```
+
