@@ -1,6 +1,8 @@
 
 ## Useful links
 
+### R Language
+
 + [R Project](https://www.r-project.org/about.html)
 + [R introduction](https://cloud.r-project.org/doc/manuals/r-release/R-intro.html)
 + [CRAN - Comprehensive R Archive Network](https://cloud.r-project.org/)
@@ -12,7 +14,10 @@
 
 R Base package documentation also available through RStudio Help
 
+### R data
 + [7 tips for getting started with R language](https://developer.ibm.com/articles/os-know-r-language/)
 
 + [DBI database access library](https://db.rstudio.com/getting-started/database-queries)
 
+### R Web apps
+Web applications with [Shiny app framework](https://shiny.rstudio.com/articles/basics.html)
