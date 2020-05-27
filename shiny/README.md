@@ -1,7 +1,7 @@
 
 This workshop stage will get you started with the [Shiny web framework](https://shiny.rstudio.com/), creating both a simple demo to interact with sample data, and more complex application which lets you explore current information regarding Coronavirus and COVID-19.
 
-You'll find excellent tutorial materials for building a Shinay app from scratch at [Shiny tutorial](https://shiny.rstudio.com/tutorial/), but to get going quickly, we'll exploit the power of the RStudio IDE.\\
+You'll find excellent tutorial materials for building a Shiny app from scratch at [Shiny tutorial](https://shiny.rstudio.com/tutorial/), but to get going quickly, we'll exploit the power of the RStudio IDE.
 
 You'll find plenty of inspirational Shiny apps at the [Shiny gallery](https://shiny.rstudio.com/gallery/) and [ShinyApps](http://shinyapps.org/)
 
