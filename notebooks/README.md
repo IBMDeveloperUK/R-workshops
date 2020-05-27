@@ -1,5 +1,7 @@
 The notebooks in this section provide an introduction to the basic syntax and capbilities of the R language, and the package ecosystem that supports it.
 
+### Basics
+
 The Basics folder contains numerous exercises in individual Jupyter notebook format, as well as the equivalent R notebook format for use with RStudio.
 
 All the basic exercises are combined into a single notebook `Lab-R_Combined` - we will use this to get familar with R.
@@ -21,6 +23,11 @@ Give the notebook a name, and hit `Create`.
 
 Now work through the examples at your own pace.
 
+### Mapping
+
+In this folder you will find an introduction to using [Leaflet for R](https://rstudio.github.io/leaflet/) to create mapping applications and visualisations.
+
+[go to mapping labs](mapping/README.md)
 
 ### Extra notebooks
 
