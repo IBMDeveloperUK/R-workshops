@@ -9,15 +9,15 @@ You'll find plenty of inspirational Shiny apps at the [Shiny gallery](https://sh
 
 First, create a new Shiny folder from your home directory in the *Files* view (bottom-right section)
 
-![new directory]("/res/new-shiny-dir.png")
+![new directory](/res/new-shiny-dir.png)
 
 Then, from the main Menu, select *File -> New File -> Shiny Web App ...*; you should be prompted to create a new app. Configure the name and location, and click `Create`
 
-![new shiny app]("/res/new-shiny-app.png")
+![new shiny app](/res/new-shiny-app.png)
 
 You should now see you have a folder at "/Home/shiny/helloworld", and two source files - `ui.R` and `server.R` - loaded into the editor view (top-right)
 
-![shiny-app-source]("/res/new-shiny-source.png")
+![shiny-app-source](/res/new-shiny-source.png)
 
 This demo app shows a plot of data from the *Old Faithful Geyser* sample dataset built into RStudio.
 
@@ -32,7 +32,7 @@ Waiting time between eruptions and the duration of the eruption for the Old Fait
 
 The app can be launched immediately using the `> Run App` button in the editor.
 
-![run shiny app]("/res/new-shiny-demo.png")
+![run shiny app](/res/new-shiny-demo.png)
 
 ### Structure of Shiny apps
 
@@ -51,14 +51,14 @@ For example, check out `shiny::plotOutput` - the function in the sample ui.R whi
 
 To see a more sophisticated implementation of Shiny, check out http://shinyapps.org/apps/corona/ 
 
-![covid-demo]("/res/covid-shiny.png")
+![covid-demo](/res/covid-shiny.png)
 
 
 The source for this app is available at [Felix Schönbrodt's Git repo](https://github.com/nicebread/corona); you can download and import into RStudio. Download to your local machine in [ZIP form](https://github.com/nicebread/corona/archive/master.zip), then use the `Upload` option in the `Files` view - RStudio will automatically unzip into a folder.
 
-![corona folder]("/res/covid-shiny-dir.png")
+![corona folder](/res/covid-shiny-dir.png)
 
 Open the `server.R` or `ui.R` in the editor, and click `> Run App`, and away you go!
 
-![covid-19 app]("/res/covid-shiny-app.png")
+![covid-19 app](/res/covid-shiny-app.png)
 
