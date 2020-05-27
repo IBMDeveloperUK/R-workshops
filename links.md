@@ -14,4 +14,5 @@ R Base package documentation also available through RStudio Help
 
 + [7 tips for getting started with R language](https://developer.ibm.com/articles/os-know-r-language/)
 
++ [DBI database access library](https://db.rstudio.com/getting-started/database-queries)
 
