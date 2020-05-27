@@ -22,3 +22,7 @@ Give the notebook a name, and hit `Create`.
 Now work through the examples at your own pace.
 
 
+### Extra notebooks
+
+The are a couple of extra notebooks, intended to help process data from Project data assets, and Db2 databases - these are R notebooks for use in RStudio.
+
