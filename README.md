@@ -23,7 +23,7 @@ To get you going, and feeling comfortable with the R language, and show it's not
 
 Then we can try out programming consructs, error handling and building functions.
 
-To tie it together, we can tackle a bit of data visualisation with plotting and charting, as well as mapping with [OpenStreetMap](https://www.openstreetmap.org/about) and [Leaflet for R].
+To tie it together, we can tackle a bit of data visualisation with plotting and charting, as well as mapping with [OpenStreetMap](https://www.openstreetmap.org/about) and [Leaflet for R](https://rstudio.github.io/leaflet/).
 
 [go to the intro labs](/notebooks/README.md)
 
