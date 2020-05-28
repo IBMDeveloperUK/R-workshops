@@ -42,5 +42,5 @@ This lab should be run in RStudio
 
 There are a couple of extra notebooks, intended to help process data from Watson Studio Project data assets, and Db2 databases - these are R notebooks for use in RStudio.
 
-
+[go to data access labs](data-access/README.md)
 
