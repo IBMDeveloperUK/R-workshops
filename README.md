@@ -1,4 +1,10 @@
 # R-workshops
+
+Welcome to the wonderful world of R and Rstudio!
+
+For many (data analysts, scicentists, statisticians) this is well-known and loved, for others (programmers, developers, engineers) some sort of *dark art* threatening python in unknown ways. 
+
+
 Some introductory R notebooks for Jupyter and RStudio in the Watson Studio environment.
 
 Thhere are lots of samples available for python notebooks for Jupyter, and hence for Watson Studio; Here, you will find a selection of similar notebooks, but which use the R runtime environment, instead of Python. 
