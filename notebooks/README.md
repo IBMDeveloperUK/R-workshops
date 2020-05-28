@@ -23,13 +23,24 @@ Give the notebook a name, and hit `Create`.
 
 Now work through the examples at your own pace.
 
+### Plotting/charting
+
+In this folder, you find a introduction to the charting capabilites of R, using basic and extended plotting libraries.
+This lab should be run in RStudio.
+
+[go to charting labs](charting/README.md)
+
 ### Mapping
 
 In this folder you will find an introduction to using [Leaflet for R](https://rstudio.github.io/leaflet/) to create mapping applications and visualisations.
 
+This lab should be run in RStudio
+
 [go to mapping labs](mapping/README.md)
 
-### Extra notebooks
+### Data access notebooks
 
-The are a couple of extra notebooks, intended to help process data from Project data assets, and Db2 databases - these are R notebooks for use in RStudio.
+There are a couple of extra notebooks, intended to help process data from Watson Studio Project data assets, and Db2 databases - these are R notebooks for use in RStudio.
+
+
 
