@@ -1,7 +1,7 @@
 
 This workshop stage will show a simple example of creating an interactive map application in RStudio using the [Leaflet library](https://rstudio.github.io/leaflet/)
 
-You don't need to anything about mapping - just use the exmaple to create and enhance the mapping interface.
+You don't need to anything about mapping - just use the example to create and enhance the mapping interface.
 
 The first example plots the position of the birthplace of R (University of Auckland, New Zealand).
 
@@ -32,3 +32,5 @@ The enhanced view includes a popup at each station, showing discharge rate, and 
 
 ![colorado-water-popups](/res/leaflet-water-popups.png)
 
+
+You'll find the R notebook for this lab in this folder.
