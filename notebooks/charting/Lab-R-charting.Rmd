@@ -1,0 +1,71 @@
+---
+title: "R plotting and data visualisation Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+# Basic plotting with `plot`
+
+Take the sample dataset - **cars**
+```{r}
+summary(cars)
+```
+A quick and dirty visualisation using the standard plot() function, uses both columns to create a simple scatter plot.
+
+```{r}
+plot(cars)
+```
+If we take a broader dataset, say the Esophageal Cancer sample - esoph - the number of columns is greater than two, so will need to be selected and massaged a little befor plotting
+```{r}
+summary(esoph)
+```
+```{r}
+#data(list=esoph)
+barplot(xtabs(esoph$ncases~esoph$tobg+esoph$alcgp),beside=TRUE,col=rainbow(4)
+,
+main="Number of Cancer cases by Alcohol and Tobacco Use
+Groups",xlab="Alcohol Use Group",ylab="Cases")
+legend("topright",legend=levels(esoph$tobgp),fill=rainbow(4),title="Tobacco
+Use Group")
+```
+If you want some more sophisticated plotting/charting options in your visualisations, **ggplot()** is the go-to service.
+```{r}
+library(ggplot2)
+ggplot(esoph,aes(x=alcgp,y=ncases,fill=tobgp))+
+geom_bar(position="dodge",stat="identity")+
+labs(fill="Tobacco Use Group",x="Acohol Use Group",y="Cases",title="Number
+ of Cancer cases by Alcohol and Tobacco Use Groups")
+
+```
+And a line-graph visualisaton of some of the EuStockMarkets sample dataset (DAX vs SMI)
+```{r}
+summary(EuStockMarkets)
+```
+```{r}
+EUst <- EuStockMarkets
+plot(EUst[,1],
+    ylab="Euros",
+    main="German and Swiss Stock Time Series Comparison")
+lines(EUst[,2],col="Blue")
+legend("topleft",legend=c("German","Swiss"),col=c("Black","Blue"),lty=1)
+
+```
+And, again, a slightly prettier, and controllable version with ggplot()
+```{r}
+df <- data.frame(Year = as.double(time(EUst)),
+                 German=as.double(EUst[,1]),
+                 Swiss = as.double(EUst[,2]))
+ggplot(df,aes(x=Year))+
+    geom_line(aes(y=df$Swiss,col="Swiss"))+
+    geom_line(aes(y=df$German,col="German"))+
+    labs(color="",y="Euros",title="German and Swiss Stock Time Series Comparison")
+```
+```{r}
+?plot
+```
+```{r}
+?`ggplot2-package`
+```
