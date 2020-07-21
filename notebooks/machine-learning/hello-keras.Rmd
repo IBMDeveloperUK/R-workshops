@@ -1,24 +1,35 @@
 ---
 title: "Hello, keras"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 # Library
 
-We're using RStudio's Keras Library.
+<b>Keras</b> is an open-source high-level neural networks API (originally written in Python) and capable of running on top of TensorFlow, CNTK, or Theano.
+
+To get first hand experience with using Neural Networks for image classification, we'll use
+<ol>
+<li>Keras
+<li>TensorFlow
+<li>MNIST images of hand-written numbers
+</ol>
 
 ```{r includes, message=FALSE, warning=FALSE}
 
-library(here)
+#library(here)
 library(keras)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 ```
 
 # The Question
 
 Can we identify single digit numbers from hand-writing?
 
-We need to simplify this for our model, as is typical when testing a hypothesis. The question we have for this experiment is "What number is in this picture?"
+We need to simplify this for our model, as is typical when testing a hypothesis. 
+The question we have for this experiment is "What number is in this picture?"
 
 In this example, we are essentially testing the results of another research effort ^[[Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner. "Gradient-based learning applied to document recognition." Proceedings of the IEEE, 86(11):2278-2324, November 1998.(http://yann.lecun.com/exdb/publis/index.html#lecun-98)]. 
 
@@ -346,7 +357,7 @@ There are many ways to save your model. It's usually a good idea to save it afte
 You can save it in human-readable form using either YAML or JSON.
 
 ```{r}
-write(model_to_yaml(model), "models/mnist_dense.yaml")
+write(model_to_yaml(model), "~/mnist_dense.yaml")
 ```
 
 The human-readable options for serializing the models don't include all of the information. The serialize_model command actually calls the Keras Python library to get the data that is not immediately available within the R objects.
@@ -355,14 +366,14 @@ All options are not included by default, however, such as the optimizer. You nee
 
 ```{r}
 raw_model <- model
-write(serialize_model(raw_model), "models/mnist_raw.txt")
+write(serialize_model(raw_model), "~/mnist_raw.txt")
 ```
 
 You can also explicitely save it as HDF5
 
 ```{r, eval=FALSE}
-save_model_hdf5(model, filepath = "models/mnist_dense_hdf5.h5")
-save_model_weights_hdf5(model, filepath="models/mnist_dense_weights_hdf5.h5")
+save_model_hdf5(model, filepath = "~/mnist_dense_hdf5.h5")
+save_model_weights_hdf5(model, filepath="~/mnist_dense_weights_hdf5.h5")
 ```
 
 The next section, Reproducibility, shows how to export your model as a TensorFlow SavedModel for deployment.
