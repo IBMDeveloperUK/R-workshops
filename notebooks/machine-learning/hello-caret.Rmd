@@ -1,0 +1,194 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+[After https://towardsdatascience.com/create-predictive-models-in-r-with-caret-12baf9941236 - Luiz Fonseca]
+
+
+Caret is short for <b>C</b>lassification <b>A</b>nd <b>RE</b>gression <b>T</b>raining. 
+It is a complete package that covers all the stages of a pipeline for creating a machine learning predictive model. 
+
+In this tutorial, we will cover the following topics:
+<ul>
+<li>Installing caret
+<li>Creating a simple model
+<li>Using cross-validation to avoid overfitting
+<li>Preprocessing the data
+<li>Finding the best parameters for your chosen model
+<li>Finding the most important features/variables for your model
+<li>Predicting with your model
+</ul>
+
+<h2>Installing</h2>
+Installing caret is just as simple as installing any other package in R.
+If you’re using RStudio (which is recommended), you can also install it by clicking on “tools” > “Install Packages…” in the toolbar.
+install.packages("caret")
+<h2>Creating a simple model</h2>
+We will be using the <b>train()</b> function. The function train() is core to caret: it is used to apply an algorithm to a set of data and create a model which represents that dataset.
+The train() function has three basic parameters:
+<ul>
+<li>Formula
+<li>Dataset
+<li>Method (or algorithm)
+</ul>
+The formula parameter is where you specify what is your dependent variable (what you want to predict) and independent variables (features). 
+The dataset parameter is your data.
+The method parameter is a string specifying which classification or regression model to use.
+
+Let's use the standard mtcars built-in dataset.
+<details>
+<summary>Motor Trend Car Road Tests (mtcars)</summary>
+
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+Format A data frame with 32 observations on 11 variables.
+mpg: Miles/(US) gallon
+cyl: Number of cylinders
+disp: Displacement (cu.in.)
+hp: Gross horsepower
+drat: Rear axle ratio
+wt: Weight (1000 lbs)
+qsec: 1/4 mile time
+vs: V/S
+am: Transmission (0 = automatic, 1 = manual)
+gear: Number of forward gears
+carb: Number of carburetors
+</details>
+
+let’s take a look at the dataframe.
+```{r}
+data(mtcars)    # Load the dataset
+head(mtcars)
+?mtcars         # Get more information about this dataset
+```
+and here's an idea of how weight and displacement affect miles per gallon
+```{r}
+plot(x = mtcars$wt, y = mtcars$mpg)
+plot(x = mtcars$disp, y = mtcars$mpg)
+ggplot(mtcars,aes(x=wt,y=mpg,color=cyl)) + geom_point() + 
+                      labs(x='Weight (x1000lbs)',y='Miles per Gallon',color='Number of\n Cylinders')  + geom_smooth() +scale_color_gradientn(colours = rainbow(5))
+```
+
+Now, let’s create regression models to predict how many miles per gallon (mpg) a car model can reach based on the other attributes.
+
+The formula can be written as “x ~ y, z, w” where x is the dependent variable, mpg, in our case, and y, z and w are independent variables. 
+
+If you want to pass all attributes you can write it as “x ~ .”.
+```{r}
+library(caret)
+```
+<h3>Simple linear regression model (lm means linear model)</h3>
+```{r}
+model <- train(mpg ~ wt,
+               data = mtcars,
+               method = "lm")
+
+# Multiple linear regression model
+model <- train(mpg ~ .,
+               data = mtcars,
+               method = "lm")
+
+# Ridge regression model
+#install.packages("elasticnet")
+#model <- train(mpg ~ .,
+#               data = mtcars,
+#               method = "lasso") # Try using "lasso"
+```
+That’s how you can use the function train() to create different basic models. Easy, isn’t it?
+
+<h2>K-fold cross-validation</h2>
+The function train() has other optional parameters. Let’s learn how to add resampling to our model by adding the parameter trControl (train control) to our train() function.
+The resampling process can be done by using K-fold cross-validation, leave-one-out cross-validation or bootstrapping. We are going to use 10-fold cross-validation in this example. To achieve that, we need to use another Caret function, trainControl(). Check the code below.
+
+```{r}
+fitControl <- trainControl(method = "repeatedcv",   
+                           number = 10,     # number of folds
+                           repeats = 10)    # repeated ten times
+
+model.cv <- train(mpg ~ .,
+               data = mtcars,
+               method = "lasso",  # now we're using the lasso method
+               trControl = fitControl)  
+
+model.cv   
+```
+<h2>Adding preprocessing</h2>
+
+The train() function has another optional parameter called preProcess. It’s used to add some pre-processing to your data.
+In this example we’re going to use the following pre-processing:
+center data (i.e. compute the mean for each column and subtracts it from each respective value);
+scale data (i.e. put all data on the same scale, e.g. a scale from 0 up to 1).
+
+However, there are more pre-processing possibilities such as “BoxCox”, “YeoJohnson”, “expoTrans”, “range”, “knnImpute”, “bagImpute”, “medianImpute”, “pca”, “ica” and “spatialSign”.
+```{r}
+model.cv <- train(mpg ~ .,
+               data = mtcars,
+               method = "lasso",
+               trControl = fitControl,
+               preProcess = c('scale', 'center')) # default: no pre-processing
+
+?train    # if you need more information about the train function
+model.cv
+```
+<h2>Finding the model hyper-parameters</h2>
+We can find the best hyperparameters for our model by using the tuneGrid parameter. This parameter receives A data frame with possible tuning values. The dataframe columns are named the same as the tuning parameters.
+To generate the possible values, we'll use the expand.grid function from the base library. To explain the use of tuneGrid I’m gonna use the ridge regression method.
+<h3>Short explanation</h3>
+The ridge method shrinks the coefficients of the predictor variables towards 0, as lambda grows. That shrinking effect decreases the model flexibility, decreasing its variance as well, but increasing bias. The idea of Ridge regression is to find a value for lambda that is a satisfying trade-off between bias and variance.
+
+With the code below we can find the best lambda parameter for ridge regression between 10^-2 up to 10^10.
+
+```{r}
+lambdaGrid <- expand.grid(lambda = 10^seq(10, -2, length=100))
+
+model.cv <- train(mpg ~ .,
+               data = mtcars,
+               method = "ridge",
+               trControl = fitControl,
+               preProcess = c('scale', 'center'),
+               tuneGrid = lambdaGrid,   # Test all the lambda values in the lambdaGrid dataframe
+               na.action = na.omit)   # Ignore NA values
+
+model.cv
+```
+When you call model.cv, you can see the metrics RMSE, Rsquared and MAE for each lambda value that you tested and the model also outputs the best choice for lambda among the values tested. In this case, it was lambda = 0.1629751.
+There’s another way of searching for hyper-parameter without passing a list of values to the train() function. We can use search = “random” inside trainControl() and the function will automatically test a range of values.
+```{r}
+fitControl <- trainControl(## 10-fold CV
+                           method = "repeatedcv",
+                           number = 10,
+                           repeats = 10,
+                           search = "random")  # hyper-parameters random search 
+
+model.cv <- train(mpg ~ .,
+               data = mtcars,
+               method = "ridge",
+               trControl = fitControl,
+               preProcess = c('scale', 'center'),
+               na.action = na.omit)
+
+model.cv
+```
+<h2>Variable Importance</h2>
+So what are the most important variables for our model? We can use the Caret function varImp; the return of varImp can be passed to the function ggplot to generate a visualization.
+```{r}
+ggplot(varImp(model.cv))
+```
+
+Clearly, the displacement variable is the most important for our predictive model.
+
+<h2>Predictions</h2>
+At last, we can use the function predict to predict a car’s performance, that is, how many miles it can reach per gallon. We can pass as argument the same dataframe used to generate the model just to show how the function works.
+
+In a real project you would use a bigger dataframe and separate it into a train set and a test set, but that’s not the purpose here.
+```{r}
+predictions <- predict(model.cv, mtcars)
+
+str(predictions)
+predictions
+```
+
