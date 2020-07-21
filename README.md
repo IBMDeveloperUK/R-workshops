@@ -8,3 +8,5 @@ If you'd like to try the hands-on activities, you'll need an IBM Cloud account w
 If you already have an IBM Cloud account, login from https://cloud.ibm.com to get your cloud console/dashboard.
 
 After that create or access your Watson Studio instance.
+
+[PDF of intro material](r-workshops-intro.pdf)
