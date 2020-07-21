@@ -11,6 +11,7 @@ We take a look at some of the built-in and commonly-used datasets for building p
 Then a sample of the most commonly-used and respected library for quickly creating regressions, and neural networks; 
 and then tackle hands-on labs with:
 
++ [DataExplorer](/notebooks/machine-learning/hello-DataExplorer.R)
 + [caret](/notebooks/machine-learning/hello-caret.Rmd)
 + [keras](/notebooks/machine-learning/hello-keras.Rmd)
 
