@@ -1,0 +1,35 @@
+---
+title: "R Notebook - little bit of Time Series"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+data(UKgas)
+```
+```{r}
+summary(UKgas)
+str(UKgas)
+head(UKgas)
+```
+
+
+```{r}
+plot(UKgas)
+```
+```{r}
+df <- data.frame( date=time(UKgas),Therms=as.matrix(UKgas))
+head(df)
+plot(df$date,df$Therms)
+```
+```{r}
+ts<-decompose(UKgas)
+plot(ts)
+```
+```{r}
+head(ts)
+```
+
