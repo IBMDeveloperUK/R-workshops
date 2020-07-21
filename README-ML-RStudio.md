@@ -1,4 +1,6 @@
-A hands-on workshop with RStudio in IBM Cloud, exploring the basic of building supervised and unsupervised learning techniques. 
+#Machine Learning with R in Watson Studio on IBM Cloud
+
+This is a hands-on workshop with RStudio in IBM Cloud, exploring the basic of building supervised and unsupervised learning techniques. 
 This will make use of the R language, 
 and standard machine learning packages from the CRAN repository. 
 
@@ -12,6 +14,6 @@ and then tackle hands-on labs with:
 + [caret](/notebooks/machine-learning/hello-caret.Rmd)
 + [keras](/notebooks/machine-learning/hello-keras.Rmd)
 
-
-
+The CognitiveClass course goes into way more detail (~12 hours) about the various methods for handling supervised and unsupervised learning, 
+the tools and techniques for approaching modelling, and offers an open badge ![Acclaim ML with R](/res/ml-with-r-badge.png)
 
