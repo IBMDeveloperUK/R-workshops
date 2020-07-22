@@ -27,7 +27,9 @@ In this tutorial, we will cover the following topics:
 <h2>Installing</h2>
 Installing caret is just as simple as installing any other package in R.
 If you’re using RStudio (which is recommended), you can also install it by clicking on “tools” > “Install Packages…” in the toolbar.
-install.packages("caret")
+```{r}
+install.packages("caret","ggplot2")
+```
 <h2>Creating a simple model</h2>
 We will be using the <b>train()</b> function. The function train() is core to caret: it is used to apply an algorithm to a set of data and create a model which represents that dataset.
 The train() function has three basic parameters:
@@ -67,6 +69,7 @@ head(mtcars)
 ```
 and here's an idea of how weight and displacement affect miles per gallon
 ```{r}
+library(ggplot2)
 plot(x = mtcars$wt, y = mtcars$mpg)
 plot(x = mtcars$disp, y = mtcars$mpg)
 ggplot(mtcars,aes(x=wt,y=mpg,color=cyl)) + geom_point() + 
