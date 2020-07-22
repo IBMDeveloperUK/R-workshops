@@ -30,3 +30,12 @@ Web applications with [Shiny app framework](https://shiny.rstudio.com/articles/b
   - [r-bloggers - Exploratory data analysis with DataExplorer](https://www.r-bloggers.com/how-to-automate-eda-with-dataexplorer-in-r/)
 + [caret](https://topepo.github.io/caret/)
   - [Data Science Dojo - Machine learning with R and caret](https://code.datasciencedojo.com/datasciencedojo/tutorials/tree/master/Introduction%20to%20Machine%20Learning%20with%20R%20and%20Caret)
+  
+### Machine learning
++ [keras](https://keras.io/)
++ [tensorflow](https://www.rdocumentation.org/packages/tensorflow)
++ [mlr](https://www.rdocumentation.org/packages/mlr)
+
+### Top X/best of 
++ [The 20 Best R Machine Learning Packages in 2020](https://www.ubuntupit.com/best-r-machine-learning-packages/)
++ [Top 10 R Packages for Data Science](https://www.datacareer.de/blog/top-10-r-packages-for-data-science/)
