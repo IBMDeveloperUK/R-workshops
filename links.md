@@ -22,8 +22,9 @@ R Base package documentation also available through RStudio Help
 ### R Web apps
 Web applications with [Shiny app framework](https://shiny.rstudio.com/articles/basics.html)
 
-### R dataset packages
-+ [Datasets](https://www.rdocumentation.org/packages/datasets)
+### Starter Datasets
++ [R core Datasets](https://www.rdocumentation.org/packages/datasets)\
++ [Datahub](https://datahub.io/core)
 
 ### Data Wrangling packages
 + [DataExplorer](https://www.rdocumentation.org/packages/DataExplorer)
