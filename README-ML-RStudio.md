@@ -12,6 +12,7 @@ Then a sample of the most commonly-used and respected library for quickly creati
 and then tackle hands-on labs with:
 
 + [DataExplorer](/notebooks/machine-learning/hello-DataExplorer.R)
++ [base timeseries](/notebooks/machine-learning/hello-TimeSeries.Rmd)
 + [caret](/notebooks/machine-learning/hello-caret.Rmd)
 + [keras](/notebooks/machine-learning/hello-keras.Rmd)
 
