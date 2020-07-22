@@ -21,3 +21,12 @@ R Base package documentation also available through RStudio Help
 
 ### R Web apps
 Web applications with [Shiny app framework](https://shiny.rstudio.com/articles/basics.html)
+
+### R dataset packages
++ [Datasets](https://www.rdocumentation.org/packages/datasets)
+
+### Data Wrangling packages
++ [DataExplorer](https://www.rdocumentation.org/packages/DataExplorer)
+  - [r-bloggers - Exploratory data analysis with DataExplorer](https://www.r-bloggers.com/how-to-automate-eda-with-dataexplorer-in-r/)
++ [caret](https://topepo.github.io/caret/)
+  - [Data Science Dojo - Machine learning with R and caret](https://code.datasciencedojo.com/datasciencedojo/tutorials/tree/master/Introduction%20to%20Machine%20Learning%20with%20R%20and%20Caret)
