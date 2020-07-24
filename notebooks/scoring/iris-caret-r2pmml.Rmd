@@ -1,0 +1,38 @@
+---
+title: "R Notebook to demonstrate export a PMML model from a caret analysis"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library("caret")
+library("randomForest")
+library("r2pmml")
+```
+```{r}
+data(iris)
+```
+# Create a preprocessor
+```{r}
+iris.preProcess = preProcess(iris, method = c("range"))
+```
+# Use the preprocessor to transform raw Iris dataset to pre-processed Iris dataset
+```{r}
+iris.transformed = predict(iris.preProcess, newdata = iris)
+```
+# Train a model using pre-processed Iris dataset
+```{r}
+iris.rf = randomForest(Species ~., data = iris.transformed, ntree = 7)
+print(iris.rf)
+```
+# Export the model to PMML.
+# Pass the preprocessor as the `preProcess` argument
+```{r}
+r2pmml(iris.rf, "iris_rf.pmml", preProcess = iris.preProcess)
+system("ls -al iris_rf.pmml && head iris_rf.pmml")
+```
+
+
